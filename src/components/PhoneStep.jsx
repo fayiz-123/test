@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, Shield, ArrowRight, CheckCircle2, Sparkles, Flame } from 'lucide-react';
+import { Phone, Shield, ArrowRight, CheckCircle2, Sparkles, Flame, ChevronDown } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 const COUNTRY_CODES = [
@@ -115,13 +115,17 @@ export const PhoneStep = () => {
             Mobile Number
           </label>
           <div className="phone-input-composite">
-            {/* Country Selector */}
-            <div className="country-select-wrapper">
-              <span className="country-flag">{selectedCountry.flag}</span>
+            {/* Compact Country Selector */}
+            <div className="country-select-wrapper" title="Change country code">
+              <div className="country-display">
+                <span className="country-flag">{selectedCountry.flag}</span>
+                <span className="country-code-text">{selectedCountry.code}</span>
+                <ChevronDown size={14} className="country-arrow-icon" />
+              </div>
               <select
                 value={countryCode}
                 onChange={(e) => setCountryCode(e.target.value)}
-                className="country-select"
+                className="country-select-overlay"
                 aria-label="Country Code"
               >
                 {COUNTRY_CODES.map((item) => (
